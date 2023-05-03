@@ -9,10 +9,9 @@
 
         <form class="form-left my-2" method="get" action="{{ route('search') }}">
                 <div class="form-group w-80 mb-3">
-                    <label for="search" class="d-block mr-2">Pencarian</label>
                     <input type="text" name="search" class="form-control w-50 d-inline" id="search" placeholder="Masukkan Nama">
                     <button type="submit" class="btn btn-primary mb-1">Cari</button>
-                    <a class="btn btn-success right" href="{{ route('mahasiswas.create') }}">Input Mahasiswa</a>
+                    <a class="btn btn-success right" href="{{ route('mahasiswas.create') }}" style="margin-left:9.6cm"> Input Mahasiswa</a>
                 </div>
             </form>
     </div>
@@ -23,7 +22,7 @@
         <p>{{ $message }}</p>
     </div>
  @endif
- 
+<br>
  <table class="table table-bordered">
     <tr>
         <th>nim</th>
@@ -54,6 +53,7 @@
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger">Delete</button>
+                <a class="btn btn-warning" href="{{ route('nilai',$Mahasiswa->Nim) }}">Nilai</a>
             </form>
         </td>
     </tr>

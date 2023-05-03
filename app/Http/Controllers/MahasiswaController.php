@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
 use App\Models\Kelas; 
+use App\Models\MahasiswaMataKuliah;
+use App\Models\Matakuliah;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Ramsey\Collection\Map\AssociativeArrayMap;
 
 class MahasiswaController extends Controller
 {
@@ -149,4 +153,11 @@ class MahasiswaController extends Controller
         return view('mahasiswas.index', compact('mahasiswas'))->with('i', (request()->input('page', 1) -1) * 5);
     }
 
+    public function nilai($nim)
+    {
+        $Mahasiswa = Mahasiswa::find($nim);
+        $Matakuliah = Matakuliah::all();
+        $MahasiswaMataKuliah = MahasiswaMataKuliah::where('mahasiswa_id','=',$nim)->get();
+        return view('mahasiswas.nilai',['Mahasiswa' => $Mahasiswa],['MahasiswaMataKuliah' => $MahasiswaMataKuliah], compact('MahasiswaMataKuliah'));
+    }
 }
